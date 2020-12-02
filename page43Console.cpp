@@ -8,13 +8,27 @@
 
 #include <stdio.h>
 
-using namespace std;
+int numMaxOfArray(int arr[], int arrLength);
+int numMinOfArray(int arr[], int arrLength);
+int countAnswer(int arr[], int minIndex, int maxIndex);
+
+int coloseApp()
+{
+    int forClosing = 1;
+    while (forClosing == 1)
+    {
+        printf("Enter 0 to close\n");
+        scanf("%d", &forClosing);
+    }
+
+    return forClosing;
+}
 
 int main(int argc, char* argv[])
 {
 
     
-    int arrSize;
+    int arrSize, minIndex, maxIndex, answer;
 
     printf("Enter array size\n");
     scanf("%d", &arrSize);
@@ -41,21 +55,92 @@ int main(int argc, char* argv[])
     {
         printf(" %d | ", arr[i]);
     }
-    prontf("\n\n");
+    printf("\n\n");
 
 
+    minIndex = numMinOfArray(arr, arrSize);
+    maxIndex = numMaxOfArray(arr, arrSize);
+
+    if(maxIndex < minIndex)
+    {
+        int tmp = maxIndex;
+        maxIndex = minIndex;
+        minIndex = tmp;
+    }
+
+    if((maxIndex - minIndex) <= 1)
+    {
+        printf("\n\nthere is no elements between\nrestart application\n\n");
+        int forClosing = coloseApp();
+
+        if(forClosing == 0)
+        {
+            return 0;
+        }
+    }
+    else
+    {
+        answer = countAnswer(arr, minIndex, maxIndex);
+        printf("answer is: %d\n\n", answer);
+    }
 
 
 
     
-    int forClosing = 0;
-    while (forClosing == 0)
+    int forClosing = coloseApp();
+    return 0;
+}
+
+
+
+
+
+int numMaxOfArray(int arr[], int arrLength)
+{
+    int maxPos = 0,
+    maxValue = arr[0];
+    
+    for(int i = 1; i < arrLength; i++)
     {
-        printf("Enter 1 to close\n");
-        scanf("%d", &forClosing);
+        if(arr[i] > maxValue)
+        {
+            maxPos = i;
+            maxValue = arr[i];
+        }
+    }
+    
+    return maxPos;
+}
+
+int numMinOfArray(int arr[], int arrLength)
+{
+    int minPos = 0,
+    minValue = arr[0];
+
+    for(int i = 1; i < arrLength; i++)
+    {
+        if(arr[i] < minValue)
+        {
+            minPos= i;
+            minValue = arr[i];
+        }
     }
 
-        return 0;
+    return minPos;
+}
+
+int countAnswer(int arr[], int minIndex, int maxIndex)
+{
+    int answer = 1;
+
+
+
+    for(int i = minIndex + 1; i < maxIndex; i++)
+    {
+        answer = answer * arr[i];
+    }
+
+    return answer;
 }
 //---------------------------------------------------------------------------
  
