@@ -43,11 +43,6 @@ int main(int argc, char* argv[])
     }
     prontf("\n\n");
 
-
-
-
-
-    
     int forClosing = 0;
     while (forClosing == 0)
     {
