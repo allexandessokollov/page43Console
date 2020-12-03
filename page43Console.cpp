@@ -155,7 +155,7 @@ int countAnswer(int arr[], int minIndex, int maxIndex)
 
     for(int i = minIndex + 1; i < maxIndex; i++)
     {
-        answer = answer * arr[i];
+        answer *= arr[i];
     }
 
     return answer;
