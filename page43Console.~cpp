@@ -7,10 +7,19 @@
 #pragma argsused
 
 #include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+
+
 
 int numMaxOfArray(int arr[], int arrLength);
 int numMinOfArray(int arr[], int arrLength);
 int countAnswer(int arr[], int minIndex, int maxIndex);
+void fillArrKeyboard(int arr[], int arrSize);
+void fillArrRandomly(int arr[], int arrSize);
+
+
+int const maxArraySize = 14;
 
 int coloseApp()
 {
@@ -27,13 +36,13 @@ int coloseApp()
 int main(int argc, char* argv[])
 {
 
-    
-    int arrSize, minIndex, maxIndex, answer;
+
+    int arrSize, minIndex, maxIndex, answer, toFillArr;
 
     printf("Enter array size\n");
     scanf("%d", &arrSize);
 
-    while(arrSize < 0 || arrSize > 14)
+    while(arrSize < 0 || arrSize > maxArraySize)
     {
         printf("Size of array should be more than 0 and less than 14\n");
         scanf("%d", &arrSize);
@@ -41,13 +50,22 @@ int main(int argc, char* argv[])
 
     int *arr = new int[arrSize];
     
-    printf("\nEnter array elements\n");
+    printf("\nTo fill array using keybord press 1\nTo fill array randomly press 2\n");
 
-    for(int i = 0; i < arrSize; i++)
+    scanf("%d", &toFillArr);
+
+
+
+    switch(toFillArr)
     {
-        printf("Enter element number %d \n", i);
-        scanf("%d", &arr[i]);
+    case 1:
+        fillArrKeyboard(arr, arrSize);
+        break;
+    case 2:
+        fillArrRandomly(arr, arrSize);
+        break;
     }
+
 
     printf("\n\n");
 
@@ -142,5 +160,28 @@ int countAnswer(int arr[], int minIndex, int maxIndex)
 
     return answer;
 }
+
+
+
+void fillArrKeyboard(int arr[], int arrSize)
+{
+
+    for(int i = 0; i < arrSize; i++)
+    {
+        printf("Enter element number %d \n", i);
+        scanf("%d", &arr[i]);
+    }
+
+}
+
+void fillArrRandomly(int arr[], int arrSize)
+{
+    for(int i = 0; i < arrSize; i++)
+    {
+        arr[i] = random(20) - 10;
+    }
+}
+
+
 //---------------------------------------------------------------------------
  
