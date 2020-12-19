@@ -10,7 +10,9 @@
 #include <conio.h>
 #include <stdlib.h>
 
-
+int const MAX_ARR_SIZE  = 14;
+int const MAX_RANDOM_VALUE = 15;
+int const MIN_RANDOM_VALUE = -5;
 
 int numMaxOfArray(int arr[], int arrLength);
 int numMinOfArray(int arr[], int arrLength);
@@ -18,31 +20,14 @@ int countAnswer(int arr[], int minIndex, int maxIndex);
 void fillArrKeyboard(int arr[], int arrSize);
 void fillArrRandomly(int arr[], int arrSize);
 
-
-int const maxArraySize = 14;
-
-int coloseApp()
-{
-    int forClosing = 1;
-    while (forClosing == 1)
-    {
-        printf("Enter 0 to close\n");
-        scanf("%d", &forClosing);
-    }
-
-    return forClosing;
-}
-
 int main(int argc, char* argv[])
 {
-
-
     int arrSize, minIndex, maxIndex, answer, toFillArr;
 
     printf("Enter array size\n");
     scanf("%d", &arrSize);
 
-    while(arrSize < 0 || arrSize > maxArraySize)
+    while(arrSize < 0 || arrSize > MAX_ARR_SIZE )
     {
         printf("Size of array should be more than 0 and less than 14\n");
         scanf("%d", &arrSize);
@@ -55,7 +40,6 @@ int main(int argc, char* argv[])
     scanf("%d", &toFillArr);
 
 
-    randomize();
     switch(toFillArr)
     {
     case 1:
@@ -89,12 +73,6 @@ int main(int argc, char* argv[])
     if((maxIndex - minIndex) <= 1)
     {
         printf("\n\nthere is no elements between\nrestart application\n\n");
-        int forClosing = coloseApp();
-
-        if(forClosing == 0)
-        {
-            return 0;
-        }
     }
     else
     {
@@ -105,7 +83,11 @@ int main(int argc, char* argv[])
 
 
     
-    int forClosing = coloseApp();
+    puts("\n\n\nPress any key ... ");
+    getch();
+    getch();
+
+    delete []arr;
     return 0;
 }
 
@@ -178,7 +160,7 @@ void fillArrRandomly(int arr[], int arrSize)
 {
     for(int i = 0; i < arrSize; i++)
     {
-        arr[i] = random(20) - 10;
+        arr[i] = random(MAX_RANDOM_VALUE - MIN_RANDOM_VALUE) + MIN_RANDOM_VALUE;
     }
 }
 
