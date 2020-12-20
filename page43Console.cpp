@@ -20,7 +20,7 @@ int countAnswer(int arr[], int minIndex, int maxIndex);
 void fillArrKeyboard(int arr[], int arrSize);
 void fillArrRandomly(int arr[], int arrSize);
 
-int main(int argc, char* argv[])
+int main()
 {
     int arrSize, minIndex, maxIndex, answer, toFillArr;
 
@@ -92,9 +92,6 @@ int main(int argc, char* argv[])
 }
 
 
-
-
-
 int numMaxOfArray(int arr[], int arrLength)
 {
     int maxPos = 0,
@@ -132,8 +129,6 @@ int numMinOfArray(int arr[], int arrLength)
 int countAnswer(int arr[], int minIndex, int maxIndex)
 {
     int answer = 1;
-
-
 
     for(int i = minIndex + 1; i < maxIndex; i++)
     {
